@@ -1,0 +1,139 @@
+awk sed grep regex 
+#! shebang
+$0 - script name
+$n - nth arg
+$# - arg count
+$? - exit status
+$! - PID of last command
+$$ - process ID of current shell
+array_name = (value1 ... valuen)
+${array_name[*]} = ${array_name[@]} = all elements of array
+> - output redirection for command to text file
+>> - output redirection with append for command to text file
+< - input redirection from text to command
+| - output redirection from process to process
+ls ?.c - any file with one character as name and .c extension
+ls ??.c - any file with two character as name and .c extension
+ls *.c any file with 0 or more characters and .c extension
+ls *hello*.c any file with hello string anywhere in name and .c extension
+ls jones[0-9][0-9][0-9] - file named jones followed by 3 digits
+
+
+
+
+
+Input and Output Redirection
+
+• Command/Program > file
+• Any output from command or program execution will be saved in file instead of displaying to
+STDOUT
+• New file will be created if does not exist or existing file will be erased first
+• Command/Program >> file :
+• Any output from command or program execution will be appended to an existing file instead of
+displaying to STDOUT
+• New file will be created if does not exist but if file already exists then it is appended
+• n >> file : output from stream with descriptor n is appended to a file
+• n >& m : merges output from stream n with stream m merge_stdout_stderr.sh
+• Command/Program < file : Input to the command or program is fed from data in file
+• n <& m : merges input from stream n with stream m
+• | (called pipe) : Takes output from one process and feed into another process
+
+
+
+
+
+
+
+
+Operators
+
+• Arithmetic Operators: + - * / % = == !=
+	• c=`expr $a + $b` add values from a and b and assign it to c
+	• a=$b would assign value of b into a
+	• [ $a == $b ] OR [ $a != $b ] would compare numeric values of a and b
+• Relational Operators: -eq –ne –gt –lt –ge –le
+	• Works for string variables also
+• Boolean/Logical Operators: ! –o –a
+• String Operators: = != -z –n str
+	• = (or !=) checks returns true if strings are equal (or not equal) respectively
+	• -z (or -n) returns true if string length is zero (or non-zero)
+	• str returns true if string is not empty
+
+
+Operators
+
+• File Test Operators (assuming file variable holds the filename)
+	• -d file: true if file is a directory
+	• -f file: true if ordinary file instead
+	of directory or special file
+	• -r file: true if file is readable
+	• -w file: true if file is writable
+	• -x file: true if file is executable
+	• -s file: true if file size > 0
+	• -e file: true if file exists
+
+
+if
+case
+while
+for
+for select
+
+
+• break statement
+#!/bin/sh a=0
+while [ $a -lt 10 ]
+do
+	echo $a
+	if [ $a -eq 5 ]
+	then
+		break
+	fi
+	a=`expr $a + 1`
+done
+
+
+• continue statement
+#!/bin/sh
+NUMS="1 2 3 4 5 6 7"
+for NUM in $NUMS
+do
+	Q=`expr $NUM % 2`
+	if [ $Q -eq 0 ]
+	then
+		echo "Number is an even number!!"
+		continue
+	fi
+	echo "Found odd number"
+done
+
+
+• Command Substitution using `command`
+DATE=`date`
+echo "Date is $DATE"
+USERS=`who | wc -l`
+echo "Logged in user are $USERS“
+
+• Variable Substitution
+	${var}
+	${var:-defaultvalue} → defaultvalue is NOT assigned to var
+	${var:=defaultval} → defaultvalue is assigned to var
+	${var:?message} → display a message on empty
+
+
+
+Parameter Passing and Returning Values
+#!/bin/sh
+# Define your function here
+Hello ()
+{
+	echo "Hello World $1 $2"
+	return 10
+}
+# Invoke your function
+Hello Amit M
+# Capture value returnd by last command
+ret=$?
+echo "Return value is $ret"	
+
+

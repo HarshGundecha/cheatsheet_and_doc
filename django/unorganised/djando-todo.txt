@@ -1,0 +1,20 @@
+form
+
+model
+	- validate if the requested resource is allowed to be accessed depending upon user, access level, date time and any other related conditions
+	- 
+
+test
+	- 
+
+authentication
+
+serialization
+
+REST API
+
+https://docs.djangoproject.com/en/2.2/ref/class-based-views/generic-editing/
+	CreateView
+	UpdateView
+	DeleteView
+	ModelForm

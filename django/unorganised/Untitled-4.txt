@@ -1,0 +1,8 @@
+#mix
+
+can to use pre_save() to do pre processing kind of work like generating slug for example
+
+can use http for calling apis inside django view
+
+theres no 100% effiient support for NoSql in django
+

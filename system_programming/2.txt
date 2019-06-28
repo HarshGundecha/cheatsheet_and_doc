@@ -1,0 +1,303 @@
+#Environment Variables in C disp_env_vars.c
+	- alongwith argc and argv we can also have 3rd arguemtnas *env as in below example
+	#include <stdio.h>
+	int main(int argc, char*argv[], char*env[])
+	{
+		char **ptr;
+		for(ptr=env; *ptr != 0; ptr++)
+		printf("%s\n",*ptr);
+	}
+	- setenv(name, value) - used to set environment varibale in c
+	- getenv(name) - used to get environment varibale in c
+
+int system(const char *command);
+	- Implemented using fork(), exec() and waitpid()
+	- Used to execute the command passed as parameter
+	- e.g. system("ls -ltr"); → runs "ls –ltr" command 
+	- e.g. system("date > tempfile"); → create tempfile with output redirected from date
+
+
+#process
+	#code
+		#system calls
+		pid_t getpid(void)
+			- Get process ID
+			- Returns process ID of calling process
+
+		pid_t getppid(void)
+			- Get parent’s process ID
+			- Returns parent process ID of calling process
+
+		pid_t fork(void)
+			- creates exact copy of caller process (copy of context, data and code )
+			- Create child process by duplicating memory of parent process. Child gets copy of data space etc. Now uses Copy-On-Write (COW)
+			- immediately when fork call ends there are 2 processes in execution where in one it Returns 0 in child, process ID of child in parent, -1 on error
+			- to execute anything in child only put that in return value of if(fork() == 0)
+			- to execute anything in parent only put that in return value of if(fork() > 0)
+			- to execute anything in both parent and child put that in outside of both the if listed above
+
+		pid_t vfork(void) (Now Absolete)
+			- Earlier fork() used to copy a complete memory of parent to child so vfork was used as optimized method
+			- Returns 0 in child, process ID of child in parent, -1 on error
+
+		void exit(int)
+			- Terminates the process and all its threads
+			- Parent of process will receive the success value passed as int
+
+		pid_t wait(int *statloc)
+		pid_t wait(pid_t pid, int *statloc..)
+			- Wait for a child process to Terminate and Wait for child to Terminate with given pid
+			- Returns process ID of child that terminated and statloc indicates returned status
+			- following macros can be used on the statloc to get some information of process for which wait was done if statloc is not NULL
+				- bool WIFEXITED(wstatus)	- returns true if child terminated normally
+				- int WEXITSTATUS(wstatus)	- returns exit status (least significant 8 bits)
+				- bool WIFSIGNALED(wstatus)	- returns true if child process was terminated by a signal
+				- number WTERMSIG(wstatus)	- returns the number of signal
+				- bool WCOREDUMP(wstatus)	- returns true if child produced a core dump
+				- bool WIFSTOPPED(wstatus)	- returns true if child was stopped by a signal
+				- number WSTOPSIG(wstatus)	- returns the signal number which caused child to stop
+				- bool WIFCONTINUED(wstatus)- returns true if child was resumed with SIGCONT signal
+
+		int execl( const char* path, const char* arg0, const char* arg1,…, const char* argn, NULL )
+		int execv( const char* path, const char* argv[] )
+		int execlp( const char* path, const char* arg0, const char* arg1, …, const char* argn, NULL)
+		int execvp( const char* path, const char* argv[] )
+			- l stands for large number of arguments ended by a NULL
+			- v stands for variable number of arguments in a array
+			- p stands for path variable meaning the program will be looked into path variable too
+			- l and v are exclusive to each othwe
+			- overwrites context, data and code of invoked program on caller process (replaces context, data and code )
+
+
+	#concept
+		#process info in linux/unix
+			- When a process starts it create a directory with process ID under /proc for per process information which consists of all the information of that process
+			- description of some file in it as follows
+				|FILE|				|DESCRIPTION|
+				-----------------------------------------------------------------
+				- clear_refs	- Clears page referenced bits shown in smaps output
+				- cmdline			- Command line arguments
+				- cpu					- Current and last cpu in which it was executed
+				- cwd					- Link to the current working directory
+				- environ			- Values of environment variables
+				- exe					- Link to the executable of this process
+				- fd					- Directory, which contains all file descriptors
+				- maps				- Memory maps to executables and library files
+				- mem					- Memory held by this process 
+				- root				- Link to the root directory of this process
+				- stat				- Process status
+				- statm				- Process memory status information
+				- status			- Process status in human readable form
+				- Pagemap			- Page table
+				- stack				- Report full stack trace, enable via CONFIG_STACKTRACE
+				- io 					- Display the IO accounting fields 
+				*and a lot more
+					- How each file is structure with field names and use can be found at:
+							https://www.kernel.org/doc/Documentation/filesystems/proc.txt
+			- to get information regarding process use
+					$ps –aux
+
+		#orphan process
+			- If parent process does not wait for child and it first terminates leaving child process orphan
+			- Orphan processes are adopted by init process which started the parent (i.e. parent of parent)
+			- to prevent making child process orphan we use wait() in parent process to make parent process wait till the child finishses its execution
+
+		#Zombie Process 
+			- a process is called zombie process when it has exited or finished execution but parent is yet to capture the exit status
+
+		#Process States (6 State Model) - Process changes state as it executes:
+		- Idle 		
+			- process is being create by fork() system call and is not yet runnable
+		- Runnable 	
+			- process is waiting for CPU to start running
+		- Running 	
+			- process is current running executing instructions
+		- Sleeping 	
+			- process is waiting for an event to occur e.g. if process has executed read() system calls, it will go in sleep until I/O request is complete
+		- Suspended 
+			- process has been "frozen" by signal such as SIGSTOP, it will resume when SIGCONT signal is received e.g. Ctrl-Z suspend all the processes of foreground job
+		- Zombified 
+			- process has terminated but has not yet returned its exit code to its parent. The process remains in zambie state until parent accepts return code using wait() system call
+
+		-refer process state diagram in SP 6th lecture pdf page - 17
+
+		#race condition
+			- when multiple process or thread races against each other of a single instance of a resource it is called race condition
+			- due to race condition the usual sequence of instruction's execution can not be guranteed
+
+
+#IPC
+	- Inter-Process Communication(IPC) is the generic term describing how two processes may exchange information with each other.
+	- In general, the two processes may be running on the same machine or on different machines
+	#methods
+		- Local - Processes running on the same machine
+			- Pipe
+				-	unnamed pipe
+				- named pipe (not discussed)
+				AND
+				- unidirectional
+				- bi-directional
+			- Signal
+			- MultiProcessing (MP) in multi-core/multi-processor architecture
+		- Distributed - Processes running on different machines
+			- Message Passing Interface (MPI)
+
+	#pipes
+		- Pipes are an inter-process communication mechanism that allow two or more processes to send information to each other.
+		- commonly used from within shells to connect the standard output of one utility to the standard input of another.
+		- For example, here’s a simple shell command that determines how many users there are on the system:
+				$ who | wc -l
+		- The who utility generates one line of output per user. This output is then "piped" into the wc utility, which, when invoked with the "-l" option, outputs the total number of lines in its input.
+		- Bytes from "who" flow through the pipe to "wc"
+		- It’s important to realize that both the writer process and the reader process of a pipeline execute concurrently;
+		- a pipe automatically buffers the output of the writer and suspends the writer if the pipe gets too full.
+		- Similarly, if a pipe empties, the reader is suspended until some more output becomes available.
+		- All versions of UNIX support unnamed pipes, which are the kind of pipes that shells use. 
+		- System V also supports a more powerful kind of pipe called a named pipe.
+
+		#Unnamed Pipes: pipe() System Call
+			- An unnamed pipe is a unidirectional communications link that automatically buffers its input ( the maximum size of the input varies with different versions of UNIX, but is approximately 5K ) and may be created using the pipe() system call.
+			- Each end of a pipe has an associated file descriptor:
+			- The “write” end of the pipe may be written to using write() and “read” end using read()
+
+
+
+
+
+
+			- When a process has finished with a pipe’s file descriptor. it should close it using close()
+			- Note read(), write() and close() are unbuffered I/O System Calls that we have studied earlier
+		 	- for e.g., 	
+					int main()
+					{
+						int fd[2];
+						pipe(fd);
+					}
+			- refer to slides for images
+			- pipe() creates an unnamed pipe and returns 0 or -1 for success or fail
+			- The descriptor associated with the “read” end of the pipe is stored in fd[0] and of “write” is stored in fd[1].
+			- If a process reads from a pipe whose “write” end has been closed, the “read()” call returns a value of zero, indicating the end of input.
+			- If a process reads from an empty pipe whose “write” end is still open, it sleeps until some input becomes available.
+			- If a process tries to read more bytes from a pipe that are present, all of the current contents are returned and read() returns the number of bytes actually read.
+			- if a process writes to a pipe whose “read” end has been closed, the write fails and the writer is sent a SIGPIPE signal. the default action of this signal is to terminate the receiver.
+			- If a process writes fewer bytes to a pipe than the pipe can hold, the write() is guaranteed to be atomic; that is, the writer process will complete its system call without being preempted by another process.
+			- Pipe are 1-way communication that means for bidirectional (2-way) communication between parent and child you need 2 pipes
+			- for e.g., 	
+					int main()
+					{
+						int fd1[2];
+						int fd2[2];
+						pipe(fd1);
+						pipe(fd2);
+					}
+			- refer to slides for images
+			- Unnamed pipes are usually used for communication between a parent process and its child, with one process writing and the other process reading.
+			- The typical sequence of events for such a communication is as follows:
+				1. The parent process creates an unnamed pipe using pipe().
+				2. The parent process forks.
+				3. The writer closes its “read” end of the pipe, and the designated reader closes its “write” end of the pipe.
+				4. The processes communicate by using write() and read() system calls.
+				5. Each process closes its active pipe descriptor when it’s finished with it. 
+			- for e.g.,
+					#define	READ	0      				// The index of the read end of the pipe
+					#define	WRITE	1      				// The index of the write end of the pipe
+					char*  phrase ="Stuff this in your pipe and smoke it";
+					int main(void) 
+					{
+						int fd[2], bytesRead; 
+						char message[100];   			// Parent process' message buffer
+						pipe(fd); 								// Create  an unnamed pipe 
+						if ( fork() == 0 )  			// Child, write
+						{
+							close(fd[READ]); 				// Close unused end
+							printf("Parent sending message \'%s\' to child\n",phrase);
+							write(fd[WRITE], phrase, strlen(phrase)+1); // Send // +1 for null character
+							close(fd[WRITE]); 			// Close used end
+						} 
+						else      								// Parent, reader
+						{
+							close(fd[WRITE]);  			// Close unused end
+							bytesRead = read( fd[READ], message, 100 ); // Receive
+							printf("Read %d bytes: %s \n", bytesRead, message );
+							close(fd[READ]);  			// Close used end 
+						}
+					}
+				- refer lecture folder for more examples
+				- The child included the phrase’s NULL terminator as part of the message so that the parent could easily display it.
+				- for e.g., 
+						write(fd[WRITE], phrase, strlen(phrase)+1); // length+1
+				- When a writer process sends more than one variable-length message into a pipe, it must use a protocol to indicate to the reader the location for the end of the message.
+				- Methods for such indication include :
+					- sending the length of a message(in bytes) before sending the message itself
+					- ending a message with a special character such as a new line or a NULL
+				- Code uses dup2 system call: duplicate a file descriptor and we can use the file descriptors interchangeably to refer to the file 
+				- for e.g., 
+						int dup2(int oldfd, int newfd);
+
+
+	#signal
+		#concept
+			- Program must sometimes deal with unexpected or unpredictable events, such as :
+				- a floating point error
+				- a power failure
+				- an alarm clock “ring”
+				- the death of a child process
+				- a termination request from a user ( i.e., Control+C )
+				- a suspend request from a user ( i.e., Control+Z )
+			- These kind of events are sometimes called interrupts, as they must interrupt the regular flow of a program in order to be processed.
+			- When UNIX recognizes that such an event has occurred, it sends the corresponding process a signal.
+			- Therefore a signal is a software interrupt delivered to a process by the OS because:
+				- it did something (segmentation fault, FPE)
+				- the user did something (pressed Ctrl+C)
+				- another process wants to tell it something (SIGUSR?)
+				- one way a process can communicate with other processes
+
+		- Signal Types:
+			- Some signals are asynchronous, they may be raised at any time (user pressing Ctrl+C)
+			- Some signals are directly related to hardware (illegal instruction, arithmetic exception, such as attempt to divide by 0) - synchronous signals
+		- Signals functions are defined in signal.h and signal numbers are defined in signal.h or signum.h (signum.h is used inside signal.h)
+
+		- Actions when Signal is received, The default handler usually performs one of the following actions:
+			- Abort				- terminate the process and generate a core file ( dump )
+			- Quit/Exit		- terminate the process without generating a core image file ( quit )
+			- Ignore			- ignore and discard the signal ( ignore )
+			- Stop				- suspend the process ( suspend )
+			- Continue		- resume the process (resume)
+
+		- some signal info
+		|SIGNAL|	|NO|	|DESCRIPTION|
+		----------------------------------
+		SIGINT 		2			Quit Interrupt – Ctrl+C pressed by user, terminate the process after saving the work, can be trapped
+		SIGKILL 	9			Quit shell command Kill –SIGKILL or kill -9 or system call kill() to send SIGKILL signal by another process (unblockable)
+		SIGUSR1		10		Quit user signal 1
+		SIGUSR2		12		Quit user signal 2
+		SIGPIPE		13		Quit write on a pipe or other socket with no one to read it.
+		SIGALRM		14		Quit alarm clock timeout
+		SIGTERM		15		Quit software termination signal(default signal sent by kill )
+		SIGCHLD		17		Ignore child status changed
+		SIGCONT		18		Ignore continued after suspension
+		SIGSTOP		19		Quit Suspend process by signal (unblockable)
+		SIGTSTP 	20 		Quit Keyboard store, Stopped by user (Ctrl+Z pressed which suspend/pause the process)
+		SIGTTIN 	21 		Quit Background read from tty
+		- around 1 to 64 (0 when normal exit happens)
+
+
+
+
+- Process suspended using Ctrl+Z (SIGTSTP) can be brought back to life using fg command which sends (SIGCONT) signal to resume
+- For background process cant use Ctrl+C, Ctrl+Z etc hence kill command is used (how one can run process in background ?)
+kill [options] pid
+kill -l lists all signals you can send
+kill -signal number PID
+- kill command can send SIGKILL signal upon pressing Ctrl+C to the foreground process which cannot be ignored
+Most signals can be modifies or ignored except SIGKILL and SIGSTOP(unblockable)
+
+
+
+- Requesting an Alarm Signal SIGALRM using alarm() System Call
+- System Call : unsigned int alarm( unsigned int second )
+- alarm() instructs the kernel to send the SIGALRM signal to the calling process after counting seconds.
+- If an alarm had already been scheduled, that alarm is overwritten.
+- If count is 0, any pending alarm requests are cancelled.
+- The default handler for this signal displays the message “Alarm clock” and terminates the process.
+- alarm() returns the number of seconds that remain until the alarm signal is sent

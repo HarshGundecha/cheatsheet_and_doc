@@ -1,0 +1,50 @@
+#PreProcessing
+takes c source code (.c)
+gives PreProccessed file (.i)
+-gcc –E helloworld.c > helloworld.i
+
+#Compilation
+takes PreProccessed code (.i)
+gives Assembly Code (.s)
+-gcc -S helloworld.i
+
+#Assembler
+translates to machine code
+takes assembly file
+gives object file
+-as helloworld.s -o helloworld.o
+
+#Linking
+takes Object file (.o)
+gives Executable file (.out)
+gcc helloword.c –o helloworld.out
+OR
+takes c source code (.c)
+gives object file (.o)
+does all of above 3 steps in once
+-gcc -c helloworld.c –o helloworld.o
+
+#Loading
+./helloworld.out
+
+
+
+
+#Create Static Library
+-gcc –c add.c sub.c
+-ar rs libmymath.a add.o sub.o
+-gcc –c call_lib_function.c
+-gcc –o call_lib_func.out call_lib_func.o libmymath.a
+OR
+-gcc –o call_lib_func.out –L . Call_lib_func.o –lmymath
+
+
+
+#Create Shared Library
+-gcc –Wall –fPIC –c add.c sub.c
+-gcc –shared -o libmymath.so add.o sub.o
+-gcc –c call_lib_function.c
+-export LD_LIBRARY_PATH=<path to library file>:$LD_LIBRARY_PATH
+-gcc –o call_lib_func call_lib_func.o libmymath.so
+OR
+-gcc –o call_lib_func –L . Call_lib_func.o –lmymath

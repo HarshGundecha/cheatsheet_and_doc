@@ -1,0 +1,17 @@
+==>Things To Look
+
+	-controller
+	-model
+	-view
+	-routes
+	-BASEPATH
+	-index.php
+	-config.php
+	-autoload.php
+	-database.php
+	-__construct() vs index()
+	-query builder
+	-helper
+	-library
+	-base_url()
+	-site_url()

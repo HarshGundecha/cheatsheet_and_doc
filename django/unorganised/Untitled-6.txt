@@ -1,0 +1,4 @@
+#custom_eror_page
+to set custom 404 page create a html file named 404.html inside template directory
+not inside template/<app_name>
+this will be used when debug is set to False

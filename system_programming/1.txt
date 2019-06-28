@@ -1,0 +1,179 @@
+#System calls in c (UnBuffered)
+//from unistd.h -> open,close,read,write,lseek
+
+#open
+int open(const char *pathname, int flags, mode_t mode);
+
+• flags:
+	- O_RDONLY : read-only access
+	- O_WRONLY : write-only access
+	- O_RDWR : read-write access
+	- O_CREAT: if file doesn’t exists then create it
+	- O_APPEND : in write mode, don’t overwrite but append the new content
+	- O_TRUNC : in write mode, truncate the file before writing new content
+
+• mode:
+	- 0600 (i.e. –rwx------) : read-write access for current user, no access for group users or other users
+	- 0644 (i.e. –rwxr—r--) : read-write access for current user, read-only access for group users and other users
+
+• open() returns an integer:
+	- 1 means error i.e. file could not be opened
+	- >= 0 : this is a “file descriptor” of a open file. Save it in a variable, you will need to pass it to all subsequent file related functions such as read, write etc
+
+int fd=open(“foo”, O_RDWR | O_CREAT, 644);
+// flags combined using | (bitwise OR)
+
+
+#read
+ssize_t read(int fd, void *buf, size_t count); → difference betn size_t & ssize_t?
+//ssize_t is signed and size_t is unsigned
+• Parameters:
+	- fd : file descriptor of the file which you want to read from
+	- buf : buffer where the file content will be stored after reading
+	- count : number of bytes to read
+• read() returns an integer:
+	- -1 means error reading the file
+	- >= 0 : number of bytes that were actually read from the file. If return value is less then the value in count (i.e. number of bytes to be read) then it is inferred that End of File has reached
+
+#write
+ssize_t write(int fd, const void *buf, size_t count);
+• Parameters:
+	- fd : file descriptor of the file which you want to write to
+	- buf : buffer from where the content will be written to the file
+	- count : number of bytes to write
+• write() returns an integer:
+	- -1 means error writing the file
+	- >= 0 : number of bytes were actually written into the file which should be the same as value in count. If return value is less then the value in count then you may have encountered error like not sufficient disk space etc.
+
+#close
+int close(int fd);
+• Parameters:
+	- fd : file descriptor of the file which you want to close
+• close() returns an integer:
+	- -1 means error closing the file
+	- 0 : OK (i.e. file successfully closed)
+
+#lseek
+off_t lseek(int fd, off_t offset, int whence);
+• Parameters:
+	- fd : file descriptor of the file which you want to close
+	- offset  = +ve or -ve number to move right or left from whence
+	• whence: where to start the offset i.e. SEEK_SET, SEEK_CUR, SEEK_END
+		- SEEK_SET – file offset set to offset
+		- SEEK_CUR – file offset set to Current location + offset
+		- SEEK_END – file offset set to file size + offset (i.e. increasing the file size)
+• lseek() returns
+	- new file offset if OK
+	- -1 on error
+
+// Tip - instead of file * we can also use standard descriptors like stdin, stdout and stderr
+
+
+
+
+
+Buffering
+
+• Goal
+- Use minimum number of read and write calls
+• Types
+1 Fully Buffered
+	- Actual I/O occurs when the buffer is filled up
+	- A buffer is automatically allocated when first I/O operation is performed on a stream
+	- flush: standard I/O library vs terminal driver
+2 Line Buffered
+	- Perform I/O when a newline character is encountered – usually for terminals
+	- Caveat
+	- Filling of buffer could trigger I/O
+- Flushing all line buffered output if input requested
+3 Unbuffered
+	- Expect to output ASAP e.g. when write() is called
+	- Or when using stdout or stderr
+
+Custommizing buffer
+void setbuf(FILE *fp, char *buf); // old function
+void setvbuf(FILE *fp, char *buf, int mode, size_t size); //newer version
+• Full/line buffering if buf is NOT NULL (BUFSIZ)
+	- Terminals
+• Mode _IOFBF, _IOLBF, _IONBF (<stdio.h>) for full,line and null buffer respectively
+	- Optional size → st_blksize (stat())
+• #define BUFSIZ 1024 (<stdio.h>)
+• They must be called before any operation is performed on the stream
+
+#fflush
+int fflush(FILE *fp);
+	- All output stream are flushed if fp == NULL
+
+
+
+#Standard calls in c (Buffered)
+//from unistd.h -> fopen,fclose,fread,fwrite,fprintf,pscanf,fseek,ftell,rewind,gets,puts,getc,putc,getchar,putchar
+
+
+#open
+- FILE *fopen(const char *pathname, const char *type);
+- pathname - filename
+- opens a specified file
+• types:
+	- r : open for reading
+	- w : create for writing or truncate to 0
+	- a : open or create for writing at the end of file
+	- r+ : open for reading and writing
+	- w+: create for reading and writing or truncate to 0
+	- a+ :open or create for reading and writing at the end of file
+	- use b to differentiate text vs binary , e.g. rb, wb ..etc
+• fopen() returns
+	- file pointer on success
+	- null on any error
+
+• fopen() flags = open() flags
+r = O_RDONLY
+w = O_WRONLY | O_CREAT | O_TRUNC
+a = O_WRONLY | O_CREAT | O_APPEND
+r+ = O_RDWR
+w+ = O_RDWR | O_CREAT | O_TRUNC
+a+ = O_RDWR | O_CREAT | O_APPEND
+
+
+
+
+#File Pointer Position
+
+• long ftell( FILE * stream)
+	- obtains the current value of the file position indicator for the stream pointed to bystream.
+
+• int fseek ( FILE * stream, long int offset, int whence );
+• parameters
+	- stream: Pointer to a FILE object that identifies the stream.
+	- offset : Binary files- Number of bytes to offset from whence. Text files- Either zero, or a value returned by ftell().
+	- whence: SEEK_SET - Beginning of file, SEEK_CUR - Current position of the file pointer,
+	SEEK_END - End of file *
+
+• int rewind(FILE * stream);
+	- Rewind function sets the file position indicator for the stream pointed to by stream to the beginning of the file. It is equivalent to (void)fseek(stream, 0L, SEEK_SET)
+
+• int fgetpos(FILE *stream, fpos_t *pos);
+• int fsetpos ( FILE * stream, const fpos_t * pos );
+- fgetpos() and fsetpost() alternate interfaces equivalent to ftell() and fseek() with whence set to SEEK_SET
+• parameters
+	- Stream: pointer to a FILE object that identifies the stream
+	- pos: Pointer to a fpos_t object containing a position previously obtained with fgetpos.
+
+#Close
+int fclose(FILE *fp);
+	- Flush buffered output
+	- Discard buffered input
+	- All I/O streams are closed after the process exists
+
+- setbuf or setvbuf to change the buffering of a file before any operation on the stream
+
+#continue from slide 23 in 5th pdf named FileIO in SysteProgramming by amit mankodi, lecture folder Daiict
+
+int getc(FILE *fp)
+int fgetc(FILE *fp)
+int putc(char c,FILE *fp)
+int fputc(char c,FILE *fp)
+int getcar() = int getc(stdin)
+int putcar(char c) = int putc(char c,stdout)
+ferror = 0 = no error
+feof = 0 = not end of file

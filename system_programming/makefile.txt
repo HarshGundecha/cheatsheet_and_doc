@@ -1,0 +1,23 @@
+#Make – Format generally used for professional software having proper project directory
+IDIR =../include # you can put include files in this directory
+CC=gcc
+CFLAGS=-I$(IDIR)
+ODIR=obj # directory where object files will be created
+LDIR =../lib # you can put library files in this directory
+LIBS=-lm # looks for library libm.so or libm.a
+_DEPS = hellomake.h
+DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS)) # create string with ../include/<header filename> in our case ../include hellomake.h
+_OBJ = hellomake.o hellofunc.o
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ)) # create string with obj/<object filename> in our case obj/hellomake.o and obj/hellofunc.o (obj folder will be created under current i.e. source directory)
+$(ODIR)/%.o: %.c $(DEPS) # i am a comment
+	$(CC) -c -o $@ $< $(CFLAGS)	# notice the tab, its by syntax, kinf of python thing
+hellomake: $(OBJ)
+	gcc -o $@ $^ $(CFLAGS) $(LIBS)
+.PHONY: clean
+clean:
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ # removes object files and temporary files created with ~ at the end of file name in current i.e. source and include directory
+
+
+#	$(patsubst pattern,replacement,text)
+#	% - acts as any match
+#	core - crash debug file

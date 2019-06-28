@@ -1,0 +1,60 @@
+String Functions – Does not work for
+Character Array
+•strlen(s) – returns the length of the string excluding
+‘\0’
+•strcmp(s1, s2) – returns 1 (+ve No) if s1 > s2, -1 (-ve
+No) if s1 < s2 and 0 if s1 equals s2
+•strcpy(dst, src) – copies src string into dst string
+•strcat(s1, s2) – returns concatenation of two string
+(i.e. s1+s2)
+•strstr(lrgstr, smlstr) – index of 1st occurrence of
+smlstr into lrgstr
+
+
+Difference between Character Array and String - How to read user input ?
+-All 10 locations will have ASCII Character value
+char c_arr[10];
+for (i=0; i<10; i++)
+	scanf(“%c”,&c_arr[i]);
+	OR
+	c_arr[i] = getchar();
+
+
+
+-Only first 9 locations can be used for storing actual string characters, last one will have ‘\0’
+char str[10];
+scanf(“%s”, str); OR
+gets(str);
+
+
+
+
+
+
+C pointer to array function
+
+• Declare Array of Function pointers and initialize
+int add(int a, int b);
+int sub(int a, int b);
+int mul(int a, int b);
+int div(int a, int b);
+int (*oper[4])(int a, int b) = {add, sub, mul, div};
+• Call the function using initialized function pointer array
+int result = oper[i](a,b);
+
+
+
+
+
+
+
+#GCC optimizations
+-O0 .. -O3 = low -> high optimization = less -> more compilation time
+-Os - Optimize space usage (code and data) of resulting program.
+
+
+
+#DOUBTS
+printf(“%d”, *ptr++);
+printf(“%d”, *(ptr++)); and different variations
+gcc -c test.c generated file have what name

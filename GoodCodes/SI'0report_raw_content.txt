@@ -1,0 +1,136 @@
+Gridle is a visual-centric cloud collaboration tool targetting mid-sized enterprises in India for team management, planning and optimizing their biggest resource: people. Certain information like which version of the file was previously shared or what was last decided in the message or what are the priority items that your team member is working on right now. This information gives context to your actions and makes collaboration complete and much more effective.
+
+
+We started by building Gridle.io which is a productivity platform for teams and enterprises which brings together all forms of communication i.e. communication through tasks, files, chats and video conferencing within teams, around projects and on the go in one cloud based simple and secure interface.
+Following the huge success of Gridle.io and having gained the trust of 400+ organisations and 29,000+ users, we have now expanded our expertise in digital services. 
+We build products that are Impeccably Robust, Ridiculously Scalable and Blissfully Simple! From product consultancy to rebranding, from building tech enabled products to marketing them digitally, One Stop For All Your Digital Needs.
+We provide expert services all under one platform called Gridle.one,  - 
+Saas
+Mobile Apps
+Product Consultancy
+UI/UX Design
+Ecommerce Marketplaces
+FinTech Products
+Digital Marketing
+Hence, all you need to get your business running!
+
+
+
+I started my work there by first learning python, Django framewrok, Django REST API Framework for around 2 weeks along with some hands on mini projects.
+AFter that i was onboarded in a team where we were working on a investment based web application that involves Large and small banks and individuals who wishes to invest money safe and hassle free.
+
+My work was based on technologies like
+	Django,
+	Django REST API Fraemewrk
+	Docker
+	Postman
+	Linux
+	Pandas
+	Regular Expressions
+	GitLab
+
+I specifically 
+1- developed few apis for	
+	- 
+
+2- also built a small program that reads data from excel sheet and meaps that data to their database columns and inserts them, where i used pandas and list comprehensions in python3
+
+3 - refactoring
+	refactored a lot of code by removing redundant code and by centalising use of repeated string constants for which i used regular expressions to catch various strings and replaced them with unified constants
+	so it was like i wrote a regular expression  which will match x strings in y files and then after verifying on clik of one button all those insttance were replaced by string constants
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5-6-19
+- solved problem of running project where i was facing permissions issue, understood process of pooled campaign and reverse query from bhautik bhai
+
+6-6-19
+- tested the understanding of pooled campaign and reverse query by creating users and performing operations through UI to get the flow
+- understood project's code flow from aayushi, suggested and started working on idea of using loaddata to load default clients, partners and custodian, faced problem on celery so was stuck at creating the dump of data
+
+7-6-19
+- solved the problem celery by help from bhautik bhai
+- created the dumped data
+- completed the task to make delete rule preference API from aayushi and started working on it
+- 
+
+8-6-19
+- was told to understand the working of editablity part of custom users + how the approval and rejection on updates work
+- read the code to get the ides, suggested some improvements while reading
+- asked queries and done
+
+10-6-19
+- created active deposit API for a particluar client on depositebook user site
+- research on how to extract xls data in python
+- looked through the mapping for excel sheet to models
+- added a date field to 4 models to maintain date and time when a row is updated
+
+11-6-19
+- rejection of deposit approval
+- added useful fields to each model(around 40) for extracting info from admin site faster and easier + added searching
+
+12-6-19
+- reviewed and merged changes to admin panel done previously
+- partially made a python module used to convert excel files to json
+
+13-6-19
+- finished the module but stuck on file not getting uploaded, which i initially thought was problem on my side, spent half+ day trying to find issue, later found the issue wasn't on my end, i was already done with my work on morning itself
+- later i was stuck at modifying dictionary returned by pandas function, which aayushi and i solved collectively, so then we were done with basic conversion
+
+14-6-19
+- started to work on generic excel to dictionay function to make it reusable
+
+15-6-19 - HOLIDAY
+16-6-19 - HOLIDAY
+
+17-6-19
+- created approve method of maturity, renewal, breakage and orderconfirmation models of reconciliationApp to update the data
+- tested the above methods
+
+18-6-19
+- merged previous work
+- updated admin site reconciliation app
+- traced and fixed email template missing account number
+- updated 7 excel sheets according to required format and data
+- updated admin site for banking app
+
+19-6-19
+- made pooled campaign template
+- worked on project wide constant search and replace
+
+20-6-19
+- tested and fixed occured due to merge in recociliation app
+
+21-6-19
+- worked on project wide constant search and replace
+- fixed errors in admin search fields
+
+22-6-19
+- leave
+- worked on constants and pushed changes
+
+23-6-19
+-holiday
+- worked on constants and pushed changes
+-updated around 100 files in 2 days
+
+24-6-19
+ - tested the string changes and fixed issues
+
+25-6-19
+- tested UAT server journey and reconciliation as per reported issues

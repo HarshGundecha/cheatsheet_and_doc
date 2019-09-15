@@ -1,0 +1,12 @@
+- Things to test
+	- model test
+	- view test
+	- form test ???(or this will be covered in model test 🤔??)
+
+- Types of test cases
+	- test exact on boundary value, exact inside boundary, exact above boundary, normal within boundary
+		- for example when an input expects a value from 0 to 10, test for following values
+			-  0, 10 	(exact boundary)
+			-  1, 9 	(inside boundary)
+			- -1, 11	(above boundary)
+			-  5			(normal average case, inside boundary)

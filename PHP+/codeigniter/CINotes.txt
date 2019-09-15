@@ -1,0 +1,219 @@
+1)==>MVC image with flow (MvcFlow.png) (5m)
+	-what is model,view,controller
+	=>flow
+		-request->controller->model
+		-model->controller
+		-controller->view->client
+
+	-Application execution flow (appflowchart.gif) (5m)
+
+2)==>(p)Explain URL (5m)
+	-http://localhost/projects/ci/  index.php/  admin/  Admin
+					(project path)					(FrontCnt)	(cnt)		(method)
+	//show practical with little manipulation in contoller and view
+
+3)==>controller (10m)
+	-explain controller
+	-(p)custom controller
+
+	-http://localhost/projects/ci/
+		V/S
+	-http://localhost/projects/ci/index.php/admin/Admin
+	-(p)configure default controller from routes.php
+
+4)==>index() (8m)
+	-explain index()
+	-(p)manipulate index
+	-(p)custom method
+	-passing arguements to methods from URL
+		-for ex. Admin/getAdmin/1
+		public function getAdmin($id)
+		{
+			echo $id;//should echo 1 ,test it first
+		}
+
+5)==>view (5m)
+	-explain view
+	-(p)custom view
+
+
+
+6)==>explain model (15-20m)
+	-basic static data flow between controller,model and view
+		-(p)custom model which returns dummy data to controller and echo it
+		-(p)custom model which returns dummy data to controller and controller to view
+
+	-(p)basic public private access by making a public and a private function and calling private from public and public from controller
+
+
+
+7)==>dispatching data from DB (15-20m)
+	//use existing database by exporting & importing
+	-(p)create DB
+	-(p)set DB name(for connnection) in ci/application/config/database.php
+	-(p)load DB in model
+
+	==>(p)execute query
+		-data=$this->db->query('select * from table_name');
+		V/S
+		-data=$this->db->get('table_name');(query builder)
+			-benefits:-
+				-change in DB driver wont need changes to query
+
+	-(p)return data to controller
+	-(p)load view and pass data
+	-(p)properly display recieved data on view
+
+8)==>Libraries (10m)
+	-explain what is library
+	-example of form validation library
+	-(p)custom library with some functions
+		-(p)loading it and using it
+
+9)==>Helpers (10)
+	-explain what is helper
+		==>(p)how to use helper
+			$this->load->helper('name_of_helper');
+			method_name();
+	-(p)example of html helper with demo of </br>
+
+	-custom helper , filename helpername_helper.php
+	-try accessing custom helper without specifying '_helper' while loading it
+	-helper vs library
+
+10)==>autoload.php (5m)
+	-what is autoload.php for
+	-located at application/config/autoload.php
+	-give example by loading some helper or library directly in autoload instead of where it is used
+
+============================================================================
+
+
+==>what ifs
+	-passing arguements to methods from URL
+		-for ex. Admin/getAdmin/1
+		public function getAdmin($id)
+		{
+			echo $id;//should echo 1
+		}
+	-pass data to view as whole array instead of key and access it
+	-access data in view with array instead of keys f it
+	-access by lower/upper case when actual is different
+	-$this->load->view('hello.php') ?will work if extension is passed
+
+==>todo
+	-removing index.php	//done with .htaccess
+	-understanding rewrite codes and rewrite rule
+	-understanding routing //partially done
+
+==>things to look
+	-controller
+	-model
+	-view
+	-routes
+	-BASEPATH
+	-index.php
+	-config.php
+	-autoload.php
+	-database.php
+	-__construct() vs index()
+	-query builder
+	-helper
+	-library
+	-base_url()
+	-site_url()
+
+
+==>notes
+
+BASEPATH
+	->makes sure that the requested file is passed through index.php before it is parsed and given to user
+	->prevents execution of php files that are not meant to be directly executed by user request
+
+index.php
+	->front/first controller of CI application that checks url and initialises required classes and sets system variables and further continues to serve user request by routing request accordingly
+
+.htaccess
+	-htaccess is a configuration file for use on web servers running the Apache Web Server software
+	-use case
+		-removing index.php from URL to make application SEO friendly
+
+base_url()
+	-http://localhost/projects/ci/
+	-complete path to the root folder of the application
+	-useful for accessing resouces rather then accessing controllers
+
+site_url()
+	-http://localhost/projects/ci/index.php
+	-complete path to the root folder of the application+Front controller i.e., index.php
+	-useful for accessing controllers rather then accessing resouces
+	-becomes same as base_url() when index.php is removed from url with .htaccess
+
+autoload.php
+	-for automatically loading packages, libraries ,helper ,database etc when the application loads so that the specifies items are not needed to be loaded in individual files or classes,
+	-in short it universally loads specified items for whole application
+
+database.php
+	-located at CI/applicaton/config/database.php
+	-used for setting up database name, user, password, DB driver etc
+
+routes.php
+	-located at CI/applicaton/config/routes.php
+	-used for internally routing the application according to pattern of the URL requested by request
+
+__construct()
+	-executes when a class is initializes
+	-useful when you need to perform actions like loading items or checking session etc before any method is executed
+
+index()
+	-executes when no function is invoked and only controller class is requested by url
+
+helper file
+	-contains functions that could be invoked directly without object or $this once loaded
+	-generally used when objects or $this is not used in helper for further adding functionality to it
+
+library file
+	-contains classes -> functions that could be invoked with object or $this once loaded
+	-generally used when objects or $this is needed to be used in library for further adding functionality to it
+
+query builder
+	-built in class/library for generating queries that are independent of the database driver, so in case of change in database driver the queries should still run fine with minor modification in application
+
+controller
+	-the class/file for a particular group of tasks where the data is modified/manipulated/checked/prepared before and/or after the data comes in and/or goes out of the application
+
+	-InShort
+		-checks/validates data when received from the user input
+		-prepares data befor sending it to model
+
+		-prepares data after receiving from model
+		-loads view file and passes the prepared data
+
+view
+	-a file that contains user inteface for the user i.e, html/css/JS/JS or other frontend technologies
+	-it is generally used to properly display data on the website sent to the it by its respective controller
+
+model
+	-
+
+====>design guide
+
+class name - Some_class
+file name - Some_class.php
+//first letter capital subsequesnt lower cases, seperated by underscore
+
+function name - some_function
+//all lower case and seperated by underscore
+
+variable name - some_variable
+//all lower case and seperated by underscore
+
+TRUE
+FALSE
+NULL
+//all upper case
+
+
+
+
+(p)=Practical

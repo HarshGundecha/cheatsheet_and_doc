@@ -1,0 +1,2 @@
+Q - how to have single source of backend validation for admin and user site forms(if possible frontend too)
+A - using model form that extends the model class so applying the constraints from there

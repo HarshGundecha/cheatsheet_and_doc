@@ -1,0 +1,61 @@
+- show list of active user and select one
+if not registered(connecting without credentials will invoke register process)
+	- will register with username and password
+connect with credentials, show menu
+#menu
+- chat
+	- show list of active user and select one
+		- on selection chat starts
+		- decide a file sending indicator
+			- e.g., sf:photo.jpg (should send file named photo.jpg)
+- notifications
+	- shows current notifications
+	- for e.g., new messages from inactive chats
+- logout
+	- close connection
+
+a structure that stores
+	- username
+	- password
+	- connection FD
+	- connection status
+		- logged in
+		- active in chat
+	- friend connection FD depending upon connection status
+	- pointer to buffer for pending messages of linkedlist
+		- linkedlist will contain pointer to actual content
+
+notification
+	- 
+message header
+	- from
+		- FD of friend
+		- if 0, message from server
+	- type
+		- if file, create file
+		- if message, get the message and store it until the chat becomes active
+		- if notification, content could be flag like 1/2 for message/file
+	- content
+		- content of above type
+
+#server
+	- client sends a message
+		- active chat
+			- forward the content to friend
+		- inactive chat
+			- store the content on server, send as soon as the chat becomes active
+
+on message arrival check 
+	- from field 
+		- if it matches active chat than display the content 
+		- else it must be notification
+
+#colors
+	- sent message - white
+	- received message - green
+	- notification - blue
+
+login()
+register()
+message_parser()
+	- check what type of message is it

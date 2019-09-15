@@ -1,9 +1,0 @@
-->CI Validation Library Criterias
-trim
-required
-numeric
-min_length[n]
-max_length[n]
-matches[field_name]
-valid_email
-is_unique[users.email]

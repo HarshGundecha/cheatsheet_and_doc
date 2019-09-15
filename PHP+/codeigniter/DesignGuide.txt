@@ -1,0 +1,16 @@
+====>design guide
+
+	-class name - Some_class
+	-file name - Some_class.php
+	//first letter capital subsequesnt lower cases, seperated by underscore
+
+	-function name - some_function
+	//all lower case and seperated by underscore
+
+	-variable name - some_variable
+	//all lower case and seperated by underscore
+
+	-TRUE
+	-FALSE
+	-NULL
+	//all upper case

@@ -1,0 +1,75 @@
+=>View(Design)
+-cache views and delete caches when there's change in design or data(on insert, update & delete)
+-use only required CSS/JS on each page instead of same CSS/JS on all pages
+-always set noscript tag on whole site(preferabbly on a header,sidebar or footer file) and redirect when JS is disabled
+-validate user input as exact as validated on backend and aslo validation should be same on insert and update
+-obfuscate JS
+-make separate JS files instead of writing JS in page inside script tag
+-always show loader animation whenever AJAX is used
+-use lazy loading animations for contents that is brought by AJAX
+-use separate meta tags on all pages as per content to make page SEO friendly
+-never echo primary keys in views use slugs instead 
+
+
+=>Controller
+-check if that user is allowed to access that URL
+-validate user input as exact as validated on frontend and aslo validation should be same on insert and update
+-validate ajax requests too
+-enrypt email and passwords and other sensitive data
+	-Password hash(php)
+		-use string password_hash(string password, int algorithm constant) to hash a password
+		-use bool password_verify(password, hash) to compare hashes
+-make sure all fields are xss_cleaned and decide what if user inserts html code
+-use either htmlentities or htmlspecialchars
+-strictly use ENUM class to maintain status codes
+-simplify ENUM and AIOAJAX class
+
+=>Model(DB)
+-cache DB selects
+-check query return status for all CRUD queries and perform further action according to query status
+-check count of all select queries and perform further action according to query status and result count
+-select only required data in query
+-give only required privilage to DB user on server(generally select,insert and update)
+-do not prefix tables with "tbl"
+-do not prefix column names with "tablename" except for primary/foreign key column
+-prefer PDO over mysqli
+-give default vlaues to required columns of tables
+
+=>Routing
+-set routing for index arguements, admin site default page, error page, user site default page, error page
+
+=>htaccess
+-remove index.php by htaccess and from site_url() also
+-restrict access to unwanted folders and files by htaccess
+
+=>CI
+-use autoload
+-do not modify system folder instead make custom model/controller/helper/library and extend stock version so that CI version can be upgraded without hassle
+-remove user_guide/license/readme files or rename them to make framework info undiscoverable
+-change development mode to production when project is deployed so errors wont show up
+
+=>Other
+-safeguard ids in URL(never pass primary keys in url instead pass slug)
+	-for safeguarding ids in url use concept of slug from https://codeigniter.com/user_guide/helpers/url_helper.html#url_title and also give unique+not null attribute to field in database for slug and also remove dead words like a,the,and etc from slug
+-always use htmlspecialchars or htmlentities while outputting data that is collected from user
+	-if content is non-editable = store filtered by htmlspecialchars or htmlentities
+	-if content is editable = store original, filter everytime when displayed by htmlspecialchars or htmlentities
+-decide between timestamp and datetime
+-set timezones for both php and mysql
+-access|use controller and its methods by their exact case as they are like "User" for "User" instead of "user" for "User"
+-use cookies to set site settings like themes or other things
+-create custom helper/library for sending mails and messages
+
+
+-disqus integration
+	-https://discourse.gohugo.io/t/same-disqus-comments-showing-up-on-every-post/7176/9
+-tawk.to intgration
+-CSRF token to prevent XSS and CSRF attack
+
+=>login/regsiter process(generic)
+Validate data
+Collect data
+Execute query
+Set Session
+Redirect
+Set error message | print error messages conditionally

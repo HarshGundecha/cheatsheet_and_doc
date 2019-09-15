@@ -1,0 +1,61 @@
+#entities
+- person
+	- properties
+		- id
+		- name
+		- email
+		- password
+		- type
+			- 0 - admin
+			- 1 - staff
+			- 2 - student
+
+	- : student
+			- properties
+
+			- task()
+				- login()
+				- list_books()
+				- book_detail()
+				- issue_book() //request for issue ???????? will get only after getting approved from staff
+				- return_book()
+				- search_book()
+
+	- : author ?????????
+			- properties
+
+	- : staff
+			- properties
+			
+			- task()
+				- login()
+				- add_book()
+				- issue_book_on_availability()
+				- approve_book_return()
+				- check_student_issue_status()
+				- search_book()
+				- send_mail_to_notify_return()		
+				- overall_book_issue_status() //like no. of books and issued etc
+
+	- : admin
+			- properties
+			
+			- task()
+				- login()
+				- add_staff()
+				- add_student()
+				- check_student_issue_status()
+
+- book (has department)
+	- properties
+		- 
+
+- department (contains book)
+	- properties
+
+- book_issue
+	- properties
+
+#Notes
+- map this to code's OOP structure to easy relation between classes and tables
+- keep central fine_amount_per_day, return_window, max_issuable_book_count

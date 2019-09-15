@@ -1,5 +1,0 @@
-==>ToDo
-
-	-removing index.php	//done with .htaccess
-	-understanding rewrite codes and rewrite rule
-	-understanding routing //partially done

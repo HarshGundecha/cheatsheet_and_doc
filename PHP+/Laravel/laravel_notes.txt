@@ -1,0 +1,76 @@
+=>To-Do
+-user name with link to profile
+-follow/unfollow user
+-like/unlike article
+
+-3 ways to pass data to view
+	-compact
+	-with
+	-array
+
+-3 ways to print data in views
+	-{{}}
+	-{!! !!} passes data through htmlentities
+	-normal php echo
+
+-2 types of views
+	-normal .php
+	-blade view that supports {{}} and other things with .blade.php extension
+
+-2 ways to play with database
+	-eloquent(ORM?)
+	-query builder
+
+-what is facade?
+
+-what is model binding
+
+-if you make errors folder in views folder and if it consists of blade.php files for each http error codes than those file will automatically be shown else default error pages will be shown
+	-example views/errors/404.blade.php
+
+-you can add addition column to DB field by making accessor|getter of the field that doesnt exist
+
+-routing with multiple methods like get, post, delete etc	
+
+-create everything(controller,provider etc) with php artisan
+
+-route doesnt take index function by default, it is necessary to specify
+
+-to acces a file or folder inside a folder use . instead of / like pages.index instead of pages/index
+
+-use @{{}} to prevent parsing of {{}} in case to print it or if its for angular js
+
+-carbon for playing with date
+
+-to share data to multiple views use appserviceprovider and View::share()
+
+- yield vs include vs extends in blade engine
+
+-factories, faker, seeding, migrate
+
+-route group, applying same  middleware to multiple methods
+
+-custom blade directives
+
+-use php artisan view:clear to clear view as they are compiled so changes may not show up
+
+-sentinel - another or better auth system
+
+-use dd($var) use dump and die a variable
+
+-model controls which data to take as input and which to protect by specifying it in "fillable" and "hidden" protected array variables, further also have dates array to make playing with dates easy by using carbon
+
+-the up() in migration file creates table and down() deletes them when called through php artisan
+
+-perform composer dump-autoload before and after clearing tables from phpmyadmin manually when you face problems in migration
+
+-never do anything manually in phpmyadmin always prefer migrations
+
+-even to add or delete or rename a field or table create seperate migration to maintain values in table
+-you might alter a migration if tables or fields are empty
+
+-while creating contoller specify --resource option which will add empty functions for all resource access types like get, post, update etc
+
+-model singular, tables plural, primary key=id, foreign key='table name in singular' + '_' + 'id'
+
+-eloquent will by default skip records that have column deleted_at != NULL when SoftDeletes are used

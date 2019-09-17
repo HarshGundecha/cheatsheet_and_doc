@@ -35,8 +35,46 @@
   - go to deployements and upload .war file there
 
 - ## automatic (automation of above)
-- to enable auto update .war on each run/deploy, configure intellij to automatically pack and put .war file at required  path
-- refer pularsight video for exact "how to"
+  - to enable auto update .war on each run/deploy, configure intellij to automatically pack and put .war file at required  path
+  - refer pularsight video for exact "how to"
 
 ---
+
+
+
+- ## Open API Specification(OAS)
+  - open API documentation standard supported by linux foundation
+
+- ## Swagger
+  - helps in generating json based api documentation
+  - uses Open API Specification(OAS) as a standard format for documentation
+  - to be able to do so it uses a few additional annotations apart from already described ones in the EntityEndpoint of java REST api classes
+  - java even have swagger specific annotations for describing API with proper information
+  - documentation can include things like URI, parameters, response codes, response entities etc
+
+seperate class suffixed with EndPoint that serves as rest EndPoint and reuses Book repository under the hood
+
+
+# Spring
+- spring is a umbrella project
+- there are multiple projects under spring like data, secutity, core etc found at [Spring projects](https://spring.io/projects)
+- spring boot is at top of these multiple projects
+- spring cloud is at top of spring boot
+- you can start a preconfigured spring boot app from [Start Spring project](https://start.spring.io)
+
+
+# parts of spring
+we put each different type of file in their respective packages
+for e.g, controller, repository, model in their own packages (i.e also a seperate directory)
+table or entity structure and getter and setter in model
+db basic crud operation in dao
+db relate dother functions in repository
+business logic in controller which also uses methods defined in DAO
+JSP = view of codeigniter
+
+
+---
+
+spring.io/projects
+start.spring.io 
 

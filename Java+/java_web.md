@@ -1,50 +1,61 @@
-# TERMINOLOGIES
-- ## java
-  - JDBC - java's build in database connectivity driver
-  - JPA - a framework that map relational database entities to java objects and persist them
-    - entity manager - an object per entity that will perform crud operations for that entity
-  - JPQL - sql like JPA query language
-  - JTA - framework for transaction management that provides atomicity
-  - repository - a directory that contains all the files that contains all the functions that performs business logic as crud operations, functions defined here are later used for serving user requests
-	- annotations - provides meta data to the contexts
-	- bean validation - used for validation in components
-  	- annotations fo rvalidations
-	- context dependency injection
-	- JAX-RS - 
+# Terminologies
+- ## Java
+  _________________________________________
+  | **Item**          | **Description**
+  |-------------------|--------------------
+  | Annotations       | a way to provide meta data to the context
+  | JDBC              | java's build in database connectivity and execution solution
+  | JPA               | a framework that map relational database entities to java objects and persist them
+  | JPQL              | sql like JPA query language
+  | Entity            | a java class that represents a real world entity and reflected in database (entity=model)
+  | Entity manager    | an object per entity that will perform crud operations for that entity
+  | JTA               | framework for transaction management that provides atomicity
+  | Repository        | a directory that contains all classes with functions that performs business logic as crud operations, functions defined here are later used for serving user requests
+  | Bean validation   | used for validation in component
+  | CDI               | context depemdency injection is used to inject dependency at runtime
+  | JAX-RS            |
+  __________________________________________
 
-- ## tools and tech
-	- maven - java ee build toool
-  	- maven archetype - cli tool that helps generates java ee directory structure and few required files
-	- wildfly	 - java runtime environment which hosts application
-	- h2 - in memory lite and embedded database(development use only)
-	- junit - tool for unit testing in java
-	- arquillian - tool for integration testing
-	- shrinkwrap - creates deployable archives, used for arquillian test deployement
-	- spring - java web development MVC framework
-	- spring boot - spring framewrok to ease spring's configuration and make spring run out of the box with almost zero configuration
-	- hibernate - orm framework for relational DB
-	- open api specification
-	- swagger
+
+- ## Tools and Tech.
+  __________________________________________
+  | **Item**        |  **Description**
+  |-----------------|-----------------------
+  | Spring          | java umbrella project
+  | Spring boot     | spring framewrok to ease spring's configuration and make spring run out of the box with almost zero configuration
+  | H2              | in memory lite and embedded database(development use only)
+  | Maven           | java ee build toool
+  | Maven archetype | cli tool that helps generates java ee directory structure and few required files
+  | Wildfly         | java runtime environment which hosts application
+  | Junit           | tool for unit testing in java
+  | Arquillian      | tool for integration testing
+  | Shrinkwrap      | creates deployable archives, used for arquillian test deployement
+  | Hibernate       | orm framework for relational DB
+  | Open api spec.  | an open source api documentation specification
+  | Swagger         | api documentaion tool and tech that uses open API spec.
+  __________________________________________
+
+
 ---
 
-# java ee deployement process
-- ## manual
+
+# Java EE Deployement Process
+- ## Manual
   - build project
   - package it in a .war file
   - start wildfly server and open it in browser
   - go to deployements and upload .war file there
 
-- ## automatic (automation of above)
+- ## Automatic (automation of above)
   - to enable auto update .war on each run/deploy, configure intellij to automatically pack and put .war file at required  path
   - refer pularsight video for exact "how to"
+
 
 ---
 
 
-
-- ## Open API Specification(OAS)
-  - open API documentation standard supported by linux foundation
-
+# Open API Specification(OAS)
+- open API documentation standard supported by linux foundation
 - ## Swagger
   - helps in generating json based api documentation
   - uses Open API Specification(OAS) as a standard format for documentation
@@ -52,7 +63,6 @@
   - java even have swagger specific annotations for describing API with proper information
   - documentation can include things like URI, parameters, response codes, response entities etc
 
-seperate class suffixed with EndPoint that serves as rest EndPoint and reuses Book repository under the hood
 
 
 # Spring
@@ -60,21 +70,19 @@ seperate class suffixed with EndPoint that serves as rest EndPoint and reuses Bo
 - there are multiple projects under spring like data, secutity, core etc found at [Spring projects](https://spring.io/projects)
 - spring boot is at top of these multiple projects
 - spring cloud is at top of spring boot
-- you can start a preconfigured spring boot app from [Start Spring project](https://start.spring.io)
 
 
-# parts of spring
-we put each different type of file in their respective packages
-for e.g, controller, repository, model in their own packages (i.e also a seperate directory)
-table or entity structure and getter and setter in model
-db basic crud operation in dao
-db relate dother functions in repository
-business logic in controller which also uses methods defined in DAO
-JSP = view of codeigniter
+# Parts of spring
+- we put each of the different type of file in their respective packages
+- for e.g, controller, repository, entity in their own packages (i.e also a seperate directory)
+- table or entity structure and g/setter in entity
+- db basic crud operation in dao
+- db relate dother functions in repository
+- business logic in controller which also uses methods defined in DAO
+- JSP = view of codeigniter
+- seperate class suffixed with EndPoint that serves as rest EndPoint and reuses Book repository under the hood
 
 
 ---
 
-spring.io/projects
-start.spring.io 
 

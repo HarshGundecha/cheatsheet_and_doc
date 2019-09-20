@@ -86,3 +86,21 @@
 ---
 
 
+# Setup a Spring Project
+- get a preconfigured spring boot app from [Start Spring project](https://start.spring.io)
+- ## Database Configuration
+  - add databases dependency in pom.xml with appropriate version
+  - on adding it will show code in red as driver might not be there, to solve that just run it and it will automatically donwload required files
+  - add database properties in application.properties alongwith auto ddl create-drop | update..
+    ````properties
+    spring.datasource.url=jdbc:postgresql://localhost:<port>/<dbname>
+    spring.datasource.username=<username>
+    spring.datasource.password=<password>
+    spring.datasource.driverClassName=org.postgresql.Driver
+    spring.jpa.hibernate.ddl-auto=create-drop
+    ````
+  - add database to datasource to explore schema from intellij itself
+  - to test create any entity and run app and see if the table for entity is created in db or not
+  - DB can also be configured progamatically and other ways
+
+---

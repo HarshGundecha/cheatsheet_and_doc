@@ -118,6 +118,15 @@
 ---
 
 
+# H2 Database
+- if you just want to start building app withou caring for DB configuration or selection then go with H2 in memory database
+- set it up in properties
+- access from browser console
+
+
+---
+
+
 # [`application.properties` reference 🔗️](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
 
 

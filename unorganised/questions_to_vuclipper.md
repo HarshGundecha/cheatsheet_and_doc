@@ -1,0 +1,14 @@
+# Question to vuclipper
+- ## Technical
+	- database ?
+	- server ?
+	- runtime environment ?
+	- unit testing ?
+	- integration testing ?
+	- how you document apis ?
+	- what you use struts or spring ?
+	- j2ee JPA or hibernate JPA ?
+	- docker ?
+	- environment profles used ?
+- ## Non Technical
+	- denim shorts allowed ?

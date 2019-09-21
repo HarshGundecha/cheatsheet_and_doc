@@ -1,0 +1,13 @@
+# GSOC organizations
+- hydra
+- google API
+- django
+- JBOSS
+- jenkins
+- firefox
+- python
+- postgresql
+- readthedocs
+- ruby
+- apache
+- the linux foundation

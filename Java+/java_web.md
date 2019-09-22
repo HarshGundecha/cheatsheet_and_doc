@@ -155,5 +155,9 @@
 ---
 
 
+# Thymeleaf
+- thymeleaf templates go into `resurces/templates` folder
+- thymeleaf sends entity object in case of input form to the contoller's function as a arguement which ca directly be inserted
+
 
 ---

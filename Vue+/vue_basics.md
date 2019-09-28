@@ -1,5 +1,6 @@
-(Vue JS Crash Course - 2019)[https://www.youtube.com/watch?v=Wy9q22isx3U]
-(Vuex Crash Course | State Management)[https://www.youtube.com/watch?v=5lVQgZzLMHc]
+[Vue JS Crash Course - 2019](https://www.youtube.com/watch?v=Wy9q22isx3U)  
+[Vuex Crash Course | State Management](https://www.youtube.com/watch?v=5lVQgZzLMHc)  
+[Installing Node js, Yarn and Vue-cli on Ubuntu 18.04](https://www.youtube.com/watch?v=piTAlhWoTPI&t=315s)  
 
 # misc
 - vue has got a ui for deployement and monitorin purpose that have a alot of features like dependenc management, plugins ..., check it out

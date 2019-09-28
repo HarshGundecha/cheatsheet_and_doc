@@ -29,6 +29,7 @@
 - happy development
 - NOTE : Tested on mint, works on windows wsl too but hot reload won't work
 
+
 # helpers
 - vue have vuex as a state management library that works with vue
 - we have vue.js devtools as chrome extension to view and debug our vue app in chrome

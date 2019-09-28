@@ -12,9 +12,22 @@
 
 
 # starting a vue poject
-- install vue cli from npm
-  - npm install -g @vue/cli
-- install all dependencies like babel, eslint, vue-router etc
+-	## install node,npm and yarn (generally once per os)
+	- install nvm from [NVM GitHub](https://github.com/nvm-sh/nvm#installation-and-update)
+	- `nvm install node`
+	- restart terminal
+	- install yarn from [yarnpkg.com](https://yarnpkg.com/en/docs/install)
+
+-	## initiate vue project (generally once per project)
+	````bash
+	npm install -g @vue/cli
+	vue create <app-name>
+	cd <app-name>
+	yarn serve
+	````
+- add all dependencies like babel, eslint, vue-router etc before starting development
+- happy development
+- NOTE : Tested on mint, works on windows wsl too but hot reload won't work
 
 # helpers
 - vue have vuex as a state management library that works with vue

@@ -12,9 +12,20 @@
 
 
 # starting a vue poject
-- install vue cli from npm
-  - npm install -g @vue/cli
-- install all dependencies like babel, eslint, vue-router etc
+-	## install node,npm and yarn (generally once per os)
+	- install nvm
+	- `nvm install node`
+	- install yarn
+
+-	## initiate vue project (generally once per project)
+	````bash
+	npm install -g @vue/cli
+	vue create <appname>
+	cd <appname>
+	yarn serve
+	````
+- add all dependencies like babel, eslint, vue-router etc before starting development
+- happy development
 
 # helpers
 - vue have vuex as a state management library that works with vue

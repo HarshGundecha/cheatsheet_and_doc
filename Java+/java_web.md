@@ -1,3 +1,13 @@
+# to be read
+  -https://dzone.com/articles/spring-boot-security-json-web-tokenjwt-hello-world
+  -https://www.youtube.com/watch?v=p6MXb0GtXwg
+  -https://www.youtube.com/watch?v=EW91te0s36Q
+
+  -https://www.callicoder.com/spring-boot-spring-security-jwt-mysql-react-app-part-1/
+  
+  -https://www.callicoder.com/spring-boot-jpa-hibernate-postgresql-restful-crud-api-example/
+
+
 # Terminologies 📖️️
 - ## Java ♨️
   _________________________________________

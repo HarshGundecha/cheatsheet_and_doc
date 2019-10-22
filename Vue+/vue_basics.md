@@ -1,18 +1,19 @@
-[Vue JS Crash Course - 2019](https://www.youtube.com/watch?v=Wy9q22isx3U)  
-[Vuex Crash Course | State Management](https://www.youtube.com/watch?v=5lVQgZzLMHc)  
-[Installing Node js, Yarn and Vue-cli on Ubuntu 18.04](https://www.youtube.com/watch?v=piTAlhWoTPI&t=315s)  
+# References
+- [Vue JS Crash Course - 2019](https://youtu.be/Wy9q22isx3U)  
+- [Vuex Crash Course | State Management](https://youtu.be/5lVQgZzLMHc)  
+- [Installing Node js, Yarn and Vue-cli on Ubuntu 18.04](https://youtu.be/piTAlhWoTPI&t=315s)  
 
 # misc
-- vue has got a ui for deployement and monitorin purpose that have a alot of features like dependenc management, plugins ..., check it out
+- vue has got a UI for deployement and monitoring purpose having a alot of features like dependenc management, plugins ..., check it out
 - export default - exports the current component alongwith data and properties of that component
-- then we have tp include porps that we want to be inject from the caller of this component
+- then we have to declare props that we want to be injectable from the parent component
 - when we put scoped attribute in style tag of a component, it limits the css to that particular component only
 - we can use <form @submit.prevent="addTodo"> invokes addTodo method and also prevents defaut html page submit action at the same time
 - we can validate props and also mark them as required
 - instead of v-bind:something we can directly use :bind
 
 
-# starting a vue poject
+# setup vuejs development environment
 -	## install node,npm and yarn (generally once per os)
 	- install nvm from [NVM GitHub](https://github.com/nvm-sh/nvm#installation-and-update)
 	- `nvm install node`
@@ -26,17 +27,44 @@
 	cd <app-name>
 	yarn serve
 	````
-- add all dependencies like babel, eslint, vue-router etc before starting development
+- add all dependencies like axios, babel, eslint, vue-router etc before starting development
 - happy development
 - NOTE : Tested on mint, works on windows wsl too but hot reload won't work
 
 
-# helpers
-- vue have vuex as a state management library that works with vue
-- we have vue.js devtools as chrome extension to view and debug our vue app in chrome
-- we have vetur as a vscode extension for easing vue developmet
-	- after installing just write scaffold and hit tab and it will generate all three tags in a component
+# new Vue project
+new project + github + exsiting template to vue template guide.
+- create github repo with readme, license, and gitignore
+- update gitignore of repo with gitignore of a latest vue project
+- pull repo to local dir
+- create new vue project as per reference in this doc
+- move vue project files(check conflicts) to pulled repo -> commit for new vue project
+- copy template folder(if any) to assets folder -> make commit for adding template and assets
+- create components for navbar, sidebar, footer etc
+- refer to how to turn nornal template to vue template for reference
+- move the created components to pulled repo, test it, if works -> commit a basic page with all vue components
+
+# html to vue template
+- select template, download zip and extract it
+- create new vue project
+- move extracted template folder in assets folder of vue project
+- choose a very simple page(call it starter page) that consist things that will be used in most pages like header, footer, sidebar with some menus etc
+- import all local css and js from starter page in main.js of vue project
+- check and update index page in vue from starter page in template like meta tag or online css, js include's link or script tags etc
+- break starter page into seperate components like header, footer, sidebar, contentwrapper etc
+- import and consume all this components in app.vue component
+- run the vue app, test and debug(if needed)
+
+
+# helper tools and tech.
+- **vuex** as a state management library that works with vue
+- **vue-router** for routing management of vue project
+- **vue.js devtools** as chrome extension to view and debug our vue app in chrome
+- **vetur** as a vscode extension for easing vue developmet
+	- after installing just write vue and hit tab and it will generate all three tags in a component
 - try prettier extension
+
+
 # vue router
 - when using router we use router-link tag instead of usual a tag of html
 - allows mapping of path with components

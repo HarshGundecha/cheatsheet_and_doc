@@ -11,13 +11,17 @@
 			- [data related](#data-related)
 			- [other](#other)
 		- [both of above](#both-of-above)
+- [references](#references)
 
 # tweeter system design
 
 ## Concepts to use
 
 ### programming / spring
-- tests
+- testing
+  - unit
+  - integration
+  - load
 - spring cloud
 - functional programming
 - universal exception handling
@@ -26,7 +30,7 @@
 - lambda, streams and filters
 - reactive programming ?, rxJava ?
 - prefer webclient instead of restteamplate
-- 
+- lombok with builders
 
 ### other tech
 
@@ -50,22 +54,27 @@
 - app notifications / pub sub / FireBase
 
 #### API gateway
+- choose from either of 
+  - zuul2, spring cloud, nginx, apigee 
 - load balancing
 - traffic splitting
 - canary builds
 - A/B testing
 
 #### data related
-- graphql for serving multiple clients
+- [GraphQL and Java & Spring](https://youtu.be/iHxu2bq3fxI)
 - caching
 - elasticsearch
 - NoSql - try DynamoDB
 - CDN
 
 #### other
+- API doc
+  - swagger
+  - spring rest docs
 - design patterns
 - social login
-- multi env setup(dev, staging, prod)
+- multi env config setup(dev, staging, prod)
 - config management
 - CI/CD
 - API versioning
@@ -78,7 +87,10 @@
 - cloud functions
   
 ### both of above
-- logging
+- logging using zipkins or something similar
   - stored somewhere in cloud storage
 - circuit breaking
 - service discovery
+
+# references
+- [Mostodon - open source similar system](https://github.com/tootsuite/mastodon)

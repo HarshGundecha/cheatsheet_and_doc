@@ -1,16 +1,13 @@
 - [Springboot MS configuration](#springboot-ms-configuration)
-  - [why needed](#why-needed)
+  - [goals | why config management.](#goals--why-config-management)
   - [what kind of config](#what-kind-of-config)
-  - [solution - config management system](#solution---config-management-system)
-    - [Types (most to least verbose)](#types-most-to-least-verbose)
-      - [xml](#xml)
-      - [properties files](#properties-files)
-      - [json](#json)
-      - [yaml](#yaml)
-    - [Goals](#goals)
-- [`application properties`](#application-properties)
-  - [externalising config](#externalising-config)
-  - [examples](#examples)
+  - [solution - config management system (least to most preferred)](#solution---config-management-system-least-to-most-preferred)
+    - [differet approaches to set properties- (least to most advantageous)](#differet-approaches-to-set-properties--least-to-most-advantageous)
+      - [setting_properties_in_spring_multiple_aproaches](#settingpropertiesinspringmultipleaproaches)
+      - [spring profiles](#spring-profiles)
+      - [cloud config](#cloud-config)
+    - [accessing properties in spring](#accessing-properties-in-spring)
+- [notes](#notes)
 - [references](#references)
   - [Spring Boot Microservices Level 3: Microservice configuration](#spring-boot-microservices-level-3-microservice-configuration)
   - [A Quick Guide to Spring @Value](#a-quick-guide-to-spring-value)
@@ -19,9 +16,12 @@
 
 # Springboot MS configuration
 
-## why needed
-- seperation between business logic and various types of config
-- most of this config should be such that changes could be made on the go wothout needing redeployements i.e dynamic configs
+## goals | why config management.
+1. externalising config from business logic
+2. for config to be env specific
+3. version history for tracking changes
+4. consistency across env, services and whole system
+5. real time config management
 
 ## what kind of config
 - springboot's own configuration
@@ -37,61 +37,19 @@
     - to test for example various offers
     - test how to provide a service with various combinations
 
-## solution - config management system
-### Types (most to least verbose)
-#### xml
-#### [properties files](#application-properties)
-#### json
-#### yaml
-  
-### Goals
-- real time config management
-- externalising config from business logic
-- for config to be env specific
-- consistency across env, services and whole system
-- version history for tracking changes
+## solution - config management system (least to most preferred)
 
+### differet approaches to set properties- (least to most advantageous)
 
-# `application properties`
+#### [setting_properties_in_spring_multiple_aproaches](configuration_management/setting_properties_in_spring_multiple_aproaches.md)
+#### [spring profiles](configuration_management/spring_profiles.md)
+#### [cloud config](configuration_management/cloud-config.md)
 
-## externalising config
-- all the config done above still resides in a fat JAR only
-- following is a way to externalise it where different env like prod & dev could pass diff configs 
-1. we can override specific property in build command itself
-2. we can pass whole `application.properties` file to override the default internal one
-3. we can use OS env variables too
-4. we can mix any or most of above
+### [accessing properties in spring](configuration_management/accessing_properties_in_spring.md)
 
-## examples
-````properties
-
-firstName = john
-lastName =doe
-fullName = ${firstName} ${lastName}
-listOfNaturals = 1,2,3
-productSpecs = {brand:'gogle', model:'pixel 3XL' }
-````
-
-````java
-@value("some static value")
-private String staticValueString;
-
-@value("${firstName}")
-private String firstNameFromProperty;
-
-@value("${firstName:jack}")
-private String firstNameFromPropertyWithDefaultValue;
-
-@value("${fullName:jack ma}")
-private String nameFromPropertyWithinProperty;
-
-@value("${listOfNaturals}")
-private List<Integer> listOfNaturalsFromProperty;
-
-@value("#{${productSpecs}}")
-private Map<String, String> productSpecsFromProperty;
-
-````
+# notes
+- separate declaring properties and getting/using properties in notes and examples
+- restructure this doc
 
 # references
 ## [Spring Boot Microservices Level 3: Microservice configuration](https://www.youtube.com/playlist?list=PLqq-6Pq4lTTaoaVoQVfRJPqvNTCjcTvJB)

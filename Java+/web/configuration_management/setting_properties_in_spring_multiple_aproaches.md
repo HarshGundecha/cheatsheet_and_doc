@@ -21,6 +21,7 @@
 
 
 ## examples
+- to know how to acces these properties look at [accessing_properties_in_spring](accessing_properties_in_spring.md)
 
 ### application.properties
 ````properties

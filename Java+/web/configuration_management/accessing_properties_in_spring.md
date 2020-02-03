@@ -11,7 +11,7 @@
 - `@ConfigurationProperties` - for getting a group of related properties
 
 ## example
-- this properties are set in [property file aproaches](configuration_management/property_file_approaches.md)
+- this properties are set in [setting_properties_in_spring_multiple_aproaches](setting_properties_in_spring_multiple_aproaches.md)
 - note that obviously both of the following can be used at same time
 
 ### using `@Value`

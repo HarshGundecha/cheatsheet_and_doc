@@ -27,7 +27,7 @@
 - for doing this via git do following
   - add `spring.cloud.config.server.git.uri=<git_url>` to application properties
 - create an application property file inside repo and commit changes
-- most of the things described here [setting_properties_in_spring_multiple_aproaches](setting_properties_in_spring_multiple_aproaches.md) applies
+- most of the things described here [configuration management - setting types least to most preferred](configuration_management.md#setting---types-least-to-most-preferred) applies
 - to make configuration specific to a microservice, create a file named after microservice's name (artifact-id)
   - for e.g., `poll-app.properties`
   - also add `spring.application.name=<poll-app>` to client microservice

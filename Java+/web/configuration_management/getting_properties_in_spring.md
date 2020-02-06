@@ -2,7 +2,7 @@
   - [example](#example)
     - [using `@Value`](#using-value)
     - [using `@ConfigurationProperty`](#using-configurationproperty)
-    - [other aproaches](#other-aproaches)
+    - [using environment/system variables](#using-environmentsystem-variables)
 - [references](#references)
 
 # accessing properties in spring
@@ -11,7 +11,7 @@
 - `@ConfigurationProperties` - for getting a group of related properties
 
 ## example
-- this properties are set in [setting_properties_in_spring_multiple_aproaches](setting_properties_in_spring_multiple_aproaches.md)
+- this properties are set in [configuration management - setting types least to most preferred](configuration_management.md#setting---types-least-to-most-preferred)
 - note that obviously both of the following can be used at same time
 
 ### using `@Value`
@@ -58,7 +58,7 @@ class Main{
 }
 ````
 
-### other aproaches
-- environment object
+### using environment/system variables
+- look for guide on how to access system variables
 
 # references

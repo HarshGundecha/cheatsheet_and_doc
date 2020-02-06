@@ -2,6 +2,7 @@
   - [Introduction](#introduction)
   - [Implementation](#implementation)
   - [Suggestion](#suggestion)
+  - [IMP NOTES](#imp-notes)
 - [References](#references)
 
 # Spring logging
@@ -21,6 +22,13 @@
 ## Suggestion
 - to prevent `application.properties` from being filled with logging config, you can put config in `logback-spring.xml` (stop judging just because it is `.xml`)
 - same as `application.properties` you define only one line for each config, the rest of configs can be included from `base.xml` of loback
+
+## IMP NOTES
+- there are multiple players in loggin game like 
+  - logback
+  - slf4j
+  - log4j
+- read, compare and finalise which one to use
 
 # References
 - [How to do logging in Spring Boot - Brain Bytes

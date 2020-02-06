@@ -1,7 +1,7 @@
 - [hystrix](#hystrix)
-  - [Introduction](#introduction)
-  - [Implementation](#implementation)
-  - [Behind the scenes - How does it work](#behind-the-scenes---how-does-it-work)
+	- [Introduction](#introduction)
+	- [Implementation](#implementation)
+	- [Behind the scenes - How does it work](#behind-the-scenes---how-does-it-work)
 - [References](#references)
 
 # hystrix
@@ -12,7 +12,7 @@
 - give it the parameters and it does the work
 - works well with spring boot
 - not activately developed (but still works and is in maintainance mode)
-- due to its limitation which is same as CB [Limitations](#limitations) people are moving towards adaptive fault tolerance
+- due to its limitation which is same as Circuit Breaker [Limitations](../../../design_patters_&_architectures/microservices+.md#limitations) people are moving towards adaptive fault tolerance
 
 ## Implementation
 - add spring-cloud-started-nttflix-hystrix dependency

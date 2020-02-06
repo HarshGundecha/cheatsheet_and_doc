@@ -32,7 +32,6 @@
 - the server takes the 1st two parts alongwith secret and uses alogirithm defined in 1st part to generates the signature
 - that signature is what the third part is all about
 - so when the user uses that token to request something, the server again computes signature from the 1st two parts and matches the computed signature with the signature in token
-- 
 
 # References
 - [What is JWT authorization really about - Java Brains

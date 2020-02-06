@@ -2,11 +2,10 @@
 - [MS related concepts and their implentations](#ms-related-concepts-and-their-implentations)
   - [Circuit Breaker pattern](#circuit-breaker-pattern)
     - [why CB are needed](#why-cb-are-needed)
-    - [Identifying break parameter](#identifying-break-parameter)
+    - [Identifying break/CB open parameter](#identifying-breakcb-open-parameter)
     - [Response in case of broken state(fallback mechanisms)](#response-in-case-of-broken-statefallback-mechanisms)
     - [Limitations](#limitations)
-    - [Identifying unbreak parameter(reset parameter)](#identifying-unbreak-parameterreset-parameter)
-- [Other](#other)
+    - [Identifying unbreak/CB close parameter(reset parameter)](#identifying-unbreakcb-close-parameterreset-parameter)
 - [References](#references)
 
 ---
@@ -46,7 +45,7 @@
 - automatic recovery
 - you could follow bulkhead pattern for limiting each service to a specific thread pool size so that if one freezes others dont get affected
 
-### Identifying break parameter
+### Identifying break/CB open parameter
 - find a parameter by which we can identify when to break the circuit(normal flow)
 - examples of parameter
   - how to decide a request has failed
@@ -69,7 +68,7 @@
 - solution
   - adaptive fault tolerance
 	
-### Identifying unbreak parameter(reset parameter)
+### Identifying unbreak/CB close parameter(reset parameter)
 - find a parameter by which we can identify when to reset(continue) the circuit(normal flow)
 - Example parameter
   - how long to wait before trying to re-communicate the said MS
@@ -77,19 +76,12 @@
 
 ---
 
-# Other
-- Reactive Programming
-- find videos on how to utilise the intellij at its best
-
-
 # References
 - [Spring Boot Microservices Level 1: Communication and Discovery](https://www.youtube.com/playlist?list=PLqq-6Pq4lTTZSKAFG6aCDVDP86Qx4lNas)
 
 - [Spring Boot Microservices Level 2: Fault Tolerance and Resilience](https://www.youtube.com/playlist?list=PLqq-6Pq4lTTbXZY_elyGv7IkKrfkSrX5e)
 
 - [What is an API Gateway?](https://www.youtube.com/watch?v=vHQqQBYJtLI)
-
-- [cool things in java and spring](https://www.youtube.com/channel/UCiz26UeGvcTy4_M3Zhgk7FQ/playlists)
 
 - [Design Pattern using Java](https://www.youtube.com/playlist?list=PLd0lZIptCEwOplc9fZ8rv5yj-Vo7C6q7k)
 

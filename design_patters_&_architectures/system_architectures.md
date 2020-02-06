@@ -2,8 +2,8 @@
   - [Context](#context)
   - [Problem](#problem)
   - [Forces](#forces)
-  - [Solution](#solution)
-    - [Monolithic architeture solution](#monolithic-architeture-solution)
+  - [Solutions](#solutions)
+    - [Monolithic architeture Solution](#monolithic-architeture-solution)
       - [Resulting context](#resulting-context)
         - [Benefits](#benefits)
         - [Limitations](#limitations)
@@ -34,9 +34,9 @@
 - You must run multiple instances of the application on multiple machines in order to satisfy scalability and availability requirements
 - You want to take advantage of emerging technologies -(frameworks, programming languages, etc)
 
-## Solution
+## Solutions
 
-### Monolithic architeture solution
+### Monolithic architeture Solution
 - Build an application with a monolithic architecture.
 - For example:
   - a single Java WAR file.

@@ -1,5 +1,39 @@
-# Text Formating
-## General
+- [What is markdown](#what-is-markdown)
+- [Elements](#elements)
+  - [Text Formating](#text-formating)
+    - [General](#general)
+    - [Links](#links)
+  - [Checkboxes](#checkboxes)
+  - [Blockquote](#blockquote)
+  - [Horizontal rule](#horizontal-rule)
+  - [Headers](#headers)
+- [h1 header](#h1-header)
+  - [h2 header](#h2-header)
+    - [h3 header](#h3-header)
+      - [h4 header](#h4-header)
+        - [h5 header](#h5-header)
+          - [h6 header](#h6-header)
+  - [Listing](#listing)
+    - [unordered](#unordered)
+    - [ordered](#ordered)
+  - [Syntax Highlighting / code block](#syntax-highlighting--code-block)
+    - [Single Line](#single-line)
+    - [Multi Line](#multi-line)
+  - [Image](#image)
+  - [Table](#table)
+    - [Note](#note)
+  - [Html / anything thats not explicily there in MD](#html--anything-thats-not-explicily-there-in-md)
+- [References](#references)
+
+# What is markdown
+- Markdown is a lightweight markup language with plain-text-formatting syntax. Its design allows it to be converted to many output formats
+- the greatest benefit of markdown is that it is vastly readable in normal text format too
+- basically the syntax is very friendly or intuitive
+
+# Elements
+
+## Text Formating
+### General
 __bold one way__  
 **bold other way**  
 _italic one way_  
@@ -16,7 +50,7 @@ separated
 
 
 
-## Links
+### Links
 
 [Git - HarshGundecha (click me)](github.com/harshgundecha)  
 Here's [a link to something that might keep changing][link that keeps changing].  
@@ -27,38 +61,40 @@ And now back to [the first link][link that keeps changing].
 [another-link]: www.google.com
 
 
-# Checkboxes
+## Checkboxes
 - [x] This is a complete item
 - [ ] This is an incomplete item
 
 
-# Blockquote
+## Blockquote
 As Kanye West said:
 > We're on different line,
 > yet rendered on same blockquote 
 
 
-# Horizontal rule  
+## Horizontal rule  
 to create a horizontal line(leave a line between dashes and other text, use 3 dashes for line)  
 
 ---
 
 
-# Headers
-# h1 header here
+## Headers
+# h1 header
 ## h2 header  
 ### h3 header
 #### h4 header  
 ##### h5 header
 ###### h6 header
 
-# Listing
-## unordered
+## Listing
+
+### unordered
 - hello 1
 	- hello 1.1
 		- hello 1.3
 - hello 2
-## ordered
+
+### ordered
 1. hello 1
    1. hello 1.1
    2. hello 1.2
@@ -66,12 +102,12 @@ to create a horizontal line(leave a line between dashes and other text, use 3 da
 3. hello 3
 
 
-# Syntax Highlighting
-## Single Line
+## Syntax Highlighting / code block
+### Single Line
 `int a = 5`
 
-## Mlti Line
-```c
+### Multi Line
+```c //language
 if(1 > 5)
 	printf('hello')
 else
@@ -86,7 +122,7 @@ else:
 ```
 
 
-# Image
+## Image
 Format: ![Alt Text](url)  
 ![Stack Avatar](https://i.stack.imgur.com/k4Il3.jpg?s=48&g=1)
 
@@ -97,14 +133,16 @@ or by referencing an image address as below
 [tiger]:https://upload.wikimedia.org/wikipedia/commons/5/56/Tiger.50.jpg
 
 
-# Table
+## Table
 First Header | Second Header
 ------------ | -------------
 Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
 
+### Note
+- table can have further cell data alignment and other things not covered here
 
-# Html
+## Html / anything thats not explicily there in MD
 <b>Be careful</b>
 <dl>
   <dt>Definition list</dt>
@@ -122,6 +160,6 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 
 # References
-[Markdowntutorial](https://www.markdowntutorial.com/)  
-[Github markdown guide](https://guides.github.com/features/mastering-markdown/)  
-[Markdown Chaeasheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)  
+- [Markdowntutorial](https://www.markdowntutorial.com/)  
+- [Github markdown guide](https://guides.github.com/features/mastering-markdown/)  
+- [Markdown Chaeasheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)  

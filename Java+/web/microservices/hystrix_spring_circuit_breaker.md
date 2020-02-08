@@ -12,7 +12,7 @@
 - give it the parameters and it does the work
 - works well with spring boot
 - not activately developed (but still works and is in maintainance mode)
-- due to its limitation which is same as Circuit Breaker [Limitations](../../../design_patters_&_architectures/microservices+.md#limitations) people are moving towards adaptive fault tolerance
+- due to its limitation which is same as Circuit Breaker [Limitations](../../../Web+/Circuit-Breaker.md#limitations) people are moving towards adaptive fault tolerance
 
 ## Implementation
 - add spring-cloud-started-nttflix-hystrix dependency

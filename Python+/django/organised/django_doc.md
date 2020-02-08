@@ -1,54 +1,54 @@
-- [Terminologies 📝](#terminologies-%f0%9f%93%9d)
-- [Tools 🛠](#tools-%f0%9f%9b%a0)
-	- [basic 🐣](#basic-%f0%9f%90%a3)
-	- [advanced 🚀](#advanced-%f0%9f%9a%80)
-- [Django_flow 🔢](#djangoflow-%f0%9f%94%a2)
-	- [project setup ⚙](#project-setup-%e2%9a%99)
-		- [initiate project and an app 🔥](#initiate-project-and-an-app-%f0%9f%94%a5)
+- [Terminologies](#terminologies)
+- [Tools](#tools)
+	- [basic](#basic)
+	- [advanced](#advanced)
+- [Django_flow](#djangoflow)
+	- [project setup](#project-setup)
+		- [initiate project and an app](#initiate-project-and-an-app)
 		- [configure project by updating project's settings.py ⚙](#configure-project-by-updating-projects-settingspy-%e2%9a%99)
-	- [models ⚡](#models-%e2%9a%a1)
+	- [models](#models)
 		- [models define the entities and its members (i.e database table and its attributes)](#models-define-the-entities-and-its-members-ie-database-table-and-its-attributes)
-	- [migrations 📒](#migrations-%f0%9f%93%92)
-	- [url_mapping 🌏](#urlmapping-%f0%9f%8c%8f)
-	- [views 💻](#views-%f0%9f%92%bb)
+	- [migrations](#migrations)
+	- [url_mapping](#urlmapping)
+	- [views](#views)
 		- [views define the `function` or `class` that is invoked upon accessing a specific url defined in urls.py](#views-define-the-function-or-class-that-is-invoked-upon-accessing-a-specific-url-defined-in-urlspy)
-	- [templates 📜](#templates-%f0%9f%93%9c)
-	- [testing 🔧](#testing-%f0%9f%94%a7)
+	- [templates](#templates)
+	- [testing](#testing)
 		- [Things to test](#things-to-test)
-		- [models](#models)
-		- [views](#views)
+		- [models](#models-1)
+		- [views](#views-1)
 		- [forms ???](#forms)
 		- [running tests](#running-tests)
-	- [admin_site 👨‍✈️](#adminsite-%f0%9f%91%a8%e2%80%8d%e2%9c%88%ef%b8%8f)
+	- [admin_site](#adminsite)
 	- [register model for admin site controls](#register-model-for-admin-site-controls)
 	- [customise admin site(optional)](#customise-admin-siteoptional)
 	- [create admin/superuser from CLI](#create-adminsuperuser-from-cli)
-- [Undefined ❗❕](#undefined-%e2%9d%97%e2%9d%95)
-- [Doubts/queries ❓](#doubtsqueries-%e2%9d%93)
+- [Undefined](#undefined)
+- [Doubts/queries](#doubtsqueries)
 
-# Terminologies 📝
+# Terminologies
 - app - standalone plugable package/module
 	- an app acts as a package which can be shipped
 - project - contains >=1 app
 	- i.e, a peojct contains multiple plugable apps
 
-# Tools 🛠 
-## basic 🐣
+# Tools
+## basic
 - `python manage.py <CommandName>` , command to perform various tasks   in django from CLI
 - (make an alias for `python manage.py <CommandName>` to shorten  it to something like `pym <CommandName>`)
 - `virtualenv` (compulsorily to be used) - virtual python environment, do more R&D
 - `pip` , `setuptools` command line django utilities that eases development
 - `python manage.py shell` , for executing django code directly on CLI
-## advanced 🚀
+## advanced
 - selenium, automated interactive testing
 - continuous integration and develpment
 - Django LiveServerTestCase
 - coverage.py to identify dead code
-- how to serve static files in both development and deployement 🤔
+- how to serve static files in both development and deployement
 
-# Django_flow 🔢
-## project setup ⚙
-### initiate project and an app 🔥
+# Django_flow
+## project setup
+### initiate project and an app
 -	setup virtualenv and activate it, after this we get django-admin utility which helps in creating a project
 - if needed instal django (`cd c/python37/scripts/`, install django )
 -	`django-admin startproject <project_name>`
@@ -64,26 +64,26 @@
 - set `ALLOWED_HOSTS` url (optional, set only if you want to use IP other than http://127.0.0.1)
 - configure database in `DATABASES` array (**if skipped**, uses sqlite with default settings, fine for development but **not for production**)
 
-## models ⚡
+## models
 ### models define the entities and its members (i.e database table and its attributes)
 - create model classes in models.py for each entity
 	- class contains member variables that **reflect** table attributes
 	- should have a `def __str__(self):` method that returns string when an object is called
 	- for e.g., if its student model(class) it might return name(attribute) of student of that particluar object
 
-## migrations 📒
+## migrations
 - after defining models
 - create migrations
 	- `python manage.py makemigrations` , command for generating migration files
 - apply migrations
 	- `python manage.py migrate` , command for running migrations against database
 
-## url_mapping 🌏
+## url_mapping
 - setup app's namespace by setting `app_name` variable just after imports in urls.py
 - configure **url -> view** mapping by setting `urlpatterns` array in urls.py with entries of `path()` as below
   - `path(<url_pattern>,<view_to_use>, name="<assign_a_name_to_view>")`
 		 
-## views 💻
+## views
 ### views define the `function` or `class` that is invoked upon accessing a specific url defined in urls.py
 - view either returns `HttpResponse` or raises Exception
 - types
@@ -96,7 +96,7 @@
 	-	working
 		-	set model, define `get_queryset(args)`
 
-## templates 📜
+## templates
 - make separate html files for each component of a webpage, namely
 -	top scripts
 - navbar
@@ -118,7 +118,7 @@
 - more on tags [Built in tags](https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#built-in-tag-reference)
 - more on filters [Built in filters](https://docs.djangoproject.com/en/dev/ref/templates/builtins/#built-in-filter-reference)
   
-## testing 🔧
+## testing
 -	tests are to be written in tests.py
 - create a test class and a function, write following things in a test function for a test
 ### Things to test
@@ -158,7 +158,7 @@
 		-	"No <EntityName> found" message in case if dataset is empty
 
 ### forms ???
-- (or will this be covered in model test 🤔??)
+- (or will this be covered in model test ??)
 ### running tests
 - `python manage.py test <TestClass>` **or**
 - `python manage.py test` , runs all tests
@@ -173,7 +173,7 @@ values	|type
 *test for both the values in above table  
 
 
-## admin_site 👨‍✈️
+## admin_site
 ## register model for admin site controls
 - import model to register and register as below
 - `admin.site.register(<ImportedModelName>)`
@@ -185,9 +185,9 @@ values	|type
 - `python manage.py createsuperuser`
   - command that launches CLI based admin creation wizard for accessing admin site
 
-# Undefined ❗❕
+# Undefined
 - `F()` - to avoid race condition
 - reverse() - to reverse map, i.e map an url name to its actual url, used while redirecting
 
-# Doubts/queries ❓
+# Doubts/queries
 - `Question.object.create()` vs `Question(date/questionl)`

@@ -5,7 +5,7 @@
 - [Django_flow](#djangoflow)
 	- [project setup](#project-setup)
 		- [initiate project and an app](#initiate-project-and-an-app)
-		- [configure project by updating project's settings.py ⚙](#configure-project-by-updating-projects-settingspy-%e2%9a%99)
+		- [configure project by updating project's settings.py](#configure-project-by-updating-projects-settingspy)
 	- [models](#models)
 		- [models define the entities and its members (i.e database table and its attributes)](#models-define-the-entities-and-its-members-ie-database-table-and-its-attributes)
 	- [migrations](#migrations)
@@ -58,7 +58,7 @@
 -	now start with creating an app inside your project by using following command
 -	`pym startapp <app_name>`
 - or simply use django setup shell script that does all of above
-### configure project by updating project's settings.py ⚙
+### configure project by updating project's settings.py
 - register your apps in `INSTALLED_APPS` array, add an entry as `<app_name>.apps.<app_name>Config`
 - set `TIME_ZONE` according to needed country from "TZ database name" column from [timezone values](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), for india use `Asia/Kolkata`
 - set `ALLOWED_HOSTS` url (optional, set only if you want to use IP other than http://127.0.0.1)

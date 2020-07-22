@@ -136,3 +136,24 @@ SPACE 		| 32
 0-9 			| 48 - 57
 A-Z 			| 65 - 90
 a-z 			|	97 - 122
+
+
+
+---
+
+private static int[] readX(final BufferedReader bufferedReader) throws IOException {
+    return Arrays.stream(bufferedReader.readLine().split("\\s+")).mapToInt(Integer::parseInt).toArray();
+}
+
+private static Integer[][] oneD2TwoDMatrix(final int row, final int col, final int[] matrixIn1D) {
+    return IntStream
+            .range(0, row)
+            .mapToObj(
+                    i -> IntStream.range(i * col, i * col + col)
+                            .mapToObj(j -> matrixIn1D[j])
+                            .toArray(Integer[]::new)
+            )
+            .toArray(Integer[][]::new);
+}
+
+---

@@ -31,6 +31,8 @@
 - read, compare and finalise which one to use
 
 # References
+- [Logback vs SLF4J vs Log4J2 - what is the difference? Java Brains Brain Bytes
+](https://www.youtube.com/watch?v=SWHYrCXIL38)
 - [How to do logging in Spring Boot - Brain Bytes
 ](https://youtu.be/lGrcZsw-hKQ)
 - [manual](http://logback.qos.ch/manual/index.html)

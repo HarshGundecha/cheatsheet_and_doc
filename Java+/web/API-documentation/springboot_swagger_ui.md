@@ -24,7 +24,7 @@
 
 # SpringBoot Swagger config
 - Add springfox swagger2 dependency for rest based documentation 
-- add @EnableSwagger to the main class of the project, ideally it should be in a seperate config file and not in main 
+- add `@EnableSwagger` to the `main` class of the project, ideally it should be in a seperate config file and not in main 
 - add springfox swagger ui dependency html (UI) based documentation, this will enable documentation at root of api domain i.e at "/swagger-ui.html"
 - after doing this initial setup we do get the API doc but there are several problems
 - 

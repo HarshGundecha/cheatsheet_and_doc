@@ -54,7 +54,7 @@
 #### reflecting new changes in client without redployement
 - if you access server it can immediately reflect changes without needing restart reason being eveythime you acess that it pulls values from file, so its always up to date
 - since the client app loads the properties once on boot, it cannot detect the changes on the fly to do so we need to do following configuration
-1. you need `spring-boot-started-actuator` in client app which exposes an POST endpoint like `<poll-app-host:port>/actuator/refresh` which when invoked tells app to pull latest properties from config server
+1. you need `spring-boot-starter-actuator` in client app which exposes an POST endpoint like `<poll-app-host:port>/actuator/refresh` which when invoked tells app to pull latest properties from config server
 2. this alone is not enough, doing so will not updates all the beans or classes that use those properties
 3. to make it happen we need to at `@RefreshScope` to all the beans or classes that you want to get updated properties when that enpoint is invoked 
 - and with this we have achieved of config management

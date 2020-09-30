@@ -25,6 +25,13 @@
       - [e.g](#eg-8)
     - [Facade](#facade)
       - [e.g](#eg-9)
+    - [Flyweight](#flyweight)
+    - [Proxy](#proxy)
+  - [Behavioural Patterns](#behavioural-patterns)
+    - [Chain of responsibility](#chain-of-responsibility)
+      - [e.g](#eg-10)
+      - [Implementation](#implementation)
+      - [Additional info](#additional-info)
     - [](#)
 - [Reference](#reference)
 
@@ -46,7 +53,7 @@
 - defines how much granular control the pattern can provide
 
 ### Complexity
-- defines how much extra interfaces or classes are needed to achieve the goals
+- defines how much extra layers in terms of interfaces or classes are needed to achieve the goals
 
 
 
@@ -206,6 +213,46 @@
 - to make it easy to update 🔁️ & keep our 🍎️ least coupled with it, we introduce an interface(ℹ️) as a layer between 🍎️ & 🔁️
 - the ℹ️ exposes least required things for 🍎️, and the implementation takes care of complexities.
 - now when 🔁️ gets an update the implementation need to be updated but the relation/contract between 🍎️ & ℹ️ stays same, thus saving us from introducing changes in our 🍎️
+
+### Flyweight
+// TODO - add notes
+
+### Proxy
+// TODO - add notes
+
+
+## Behavioural Patterns
+
+### Chain of responsibility
+- Chain of Responsibility is a behavioral design pattern that lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.
+
+#### e.g
+- suppose there's a request coming to server and as usual you want to perform a series of checks before you can actually process the request
+  - the checks can be
+    1. Sanitization of data(🧹)
+    2. Validation of data(✅)
+    3. Authentication(🔑)
+    4. Authorization(🛡️)
+- now as per the names of individual checks/processes you would've guessed that these are sequential checks which means we proceed to next check only if previous one was successful
+- also we only start actually processing the request after **ALL** of the checks 🧹 -> ✅ -> 🔑 -> 🛡️ are successfully performed
+
+#### Implementation
+- to achieve this define an interface(ℹ️) with 2 ()s
+  1. execute() - used to handle the process of 1 step in chain
+  2. setNext() - used to set the next handler in the chain (basically a setter method)
+- **for each** handler implement the ℹ️ as follows 
+  1. declare a private field that will hold the next handler's reference
+  2. define execute() having handlers logic 
+  3. define setNext() to set private field to next handler in chain
+- so in our e.g we will have atleast 1 ℹ️ and 4 implementations
+
+#### Additional info
+- the chain can be seen as connected by logical ANDs or ORs, here's how
+  - if the implementation is such that any one of the N handler should be executed successfully, you can see this as OR connected chain
+  - if the implementation is such that all of them should be executed successfully, you can see this as AND connected chain
+- pro tip - you can use abstract class instead of ℹ️ to define following for once and be done
+  - the private field that will hold the reference to next handler
+  - the code for setNext() which will be now same for all implementation since the private field will also be same for all 
 
 ### 
 
